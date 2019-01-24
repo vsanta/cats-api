@@ -1,0 +1,2 @@
+module Cats
+end
