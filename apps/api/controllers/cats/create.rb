@@ -5,7 +5,7 @@ module Api::Controllers::Cats
     expose :cat
 
     def call(params)
-      @cat = CatRepository.new.create(params[:cat])
+      @cat = AddCatWithBreed.new.call(params[:cat]).cat
     end
   end
 end
