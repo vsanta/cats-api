@@ -1,11 +1,13 @@
 require 'bundler/setup'
 require 'hanami/setup'
 require 'hanami/model'
+require 'hanami/middleware/body_parser'
 require_relative '../lib/cats'
 require_relative '../apps/api/application'
 
 Hanami.configure do
   mount Api::Application, at: '/api'
+  middleware.use Hanami::Middleware::BodyParser, :json
 
   model do
     ##
@@ -19,7 +21,6 @@ Hanami.configure do
     #    adapter :sql, 'mysql://localhost/cats_development'
     #
     adapter :sql, ENV.fetch('DATABASE_URL')
-
     ##
     # Migrations
     #
