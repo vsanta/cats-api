@@ -1,13 +1,10 @@
 module Api::Controllers::Cats
   class Index
     include Api::Action
-    include JSONAPI::Hanami::Action
-
-    # expose :cats
+    expose :cats
 
     def call(params)
-      self.data = CatRepository.new.all
-      # @cats =
+      @cats = CatRepository.new.all
     end
   end
 end
